@@ -1,9 +1,4 @@
-function addArgs(array) {
-    total = 0;
-    for(var i = 0; i < array.length; i++) {
-        total += +array[i];
-    }
-    return total;
-}
+var fs = require('fs');
 
-console.log(addArgs(process.argv.slice(2, process.argv.length)));
+var buf = fs.readFileSync(process.argv[2]);
+console.log(buf.toString().split("\n").length - 1);
