@@ -6,8 +6,13 @@ module.exports = function(url, callback) {
         response.on('error', function(err) {
             return callback(err);
         });
+        var dataArray = [];
         response.on('data', function(data) {
-            return callback(null, data);
+            dataArray.push(data);
+        });
+        response.on('end', function(end) {
+            callback(null, dataArray.join('').length);
+            return callback(null, dataArray.join(''));
         });
     });
 }
