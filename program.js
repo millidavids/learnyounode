@@ -1,15 +1,12 @@
-var fs = require('fs');
-var re = /.txt/;
+var modular = require("./mymodule");
 
-fs.readdir(process.argv[2], function (err, list){
-    filterFileType(list, process.argv[3]);
-});
-
-function filterFileType(list, type) {
-    var pattern = "[\\w-]+\\." + type;
-    for(var i = 0; i < list.length; i++){
-        if (list[i].match(new RegExp(pattern))){
-           console.log(list[i]);
-        }
+var callback = function(err, data) {
+    if(err) {
+        console.error(err);
     }
+    data.forEach(function(element) {
+        console.log(element);
+    });
 }
+
+modular(process.argv[2], process.argv[3], callback);
