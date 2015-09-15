@@ -1,15 +1,7 @@
-var modular = require("./mymodule");
-var callback_count = 2;
+var net = require('net');
+var strftime = require('strftime');
 
-var callback = function(err, data) {
-    if(err) {
-        console.error(err);
-    }
-    console.log(data);
-    callback_count++;
-    if (callback_count < process.argv.length){
-        modular(process.argv[callback_count], callback);
-    }
-}
-
-modular(process.argv[callback_count], callback);
+var server = net.createServer(function(socket){
+    socket.end(strftime('%F %H:%M'));
+});
+server.listen(process.argv[2]);
