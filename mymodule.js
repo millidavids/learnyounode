@@ -11,7 +11,6 @@ module.exports = function(url, callback) {
             dataArray.push(data);
         });
         response.on('end', function(end) {
-            callback(null, dataArray.join('').length);
             return callback(null, dataArray.join(''));
         });
     });
